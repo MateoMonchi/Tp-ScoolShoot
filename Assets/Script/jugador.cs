@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class jugador : MonoBehaviour
 {
-
-    [SerializeField] private float speed = 3f;
-
-    private Rigidbody2D playerRB;
-
-    private Vector2 moveInput;
-
-    
-
+    public float speed = 3f;
+    public float rotSpeed = 200f;
 
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>();
+   
     }
 
 
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        moveInput = new Vector2(moveX, moveY).normalized;
+        Quaternion rot = transform.rotation;
+        float z = rot.eulerAngles.z;
+        z -= Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        rot = Quaternion.Euler(0,0,z);
+        transform.rotation = rot;
+        Vector3 pos = transform.position;
+        Vector3 velocity = new Vector3(0, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+        pos += rot * velocity;
+        transform.position = pos;
+      
     }
-    private void FixedUpdate()
-    {
-        playerRB.MovePosition(playerRB.position + moveInput * speed * Time.fixedDeltaTime);
-    }
+    
 }
 
