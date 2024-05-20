@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DisparadorJugador : MonoBehaviour
 {
-    public GameObject laserBluePrefab;
+    public Vector3 laserOffset = new Vector3(0, 0.5f, 0);
+    public GameObject laserPrefab;
     public float fireDelay = 0.25f;
     float coolDownTimer = 0;
     void Update()
@@ -14,7 +15,8 @@ public class DisparadorJugador : MonoBehaviour
         {
             Debug.Log("Pew!");
             coolDownTimer = fireDelay;
-            Instantiate(laserBluePrefab, transform.position, transform.rotation);
+            Vector3 offset = transform.rotation * laserOffset;
+            Instantiate(laserPrefab, transform.position, transform.rotation);
         }
     }
 }
