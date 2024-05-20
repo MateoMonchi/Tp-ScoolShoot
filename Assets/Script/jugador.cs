@@ -8,12 +8,6 @@ public class jugador : MonoBehaviour
     public float rotSpeed = 180f;
     float radioLimite = 0.5f;
 
-    void Start()
-    {
-   
-    }
-
-
     void Update()
     {
         Quaternion rot = transform.rotation;
