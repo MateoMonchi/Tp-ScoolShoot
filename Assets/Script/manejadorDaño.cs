@@ -8,9 +8,20 @@ public class manejadorDaño : MonoBehaviour
     float TiempoInvuln = 0;
     int correctLayer;
     public float invulnPeriodo = 0;
+    SpriteRenderer spriteRender;
+    float invulnAnimTimer = 0;
     void Start()
     {
         correctLayer = gameObject.layer;  
+        spriteRender = GetComponent<SpriteRenderer>();
+        if (spriteRender == null)
+        {
+            spriteRender = transform.GetComponentInChildren<SpriteRenderer>();
+        }
+        if(spriteRender == null)
+        {
+            Debug.LogError("Objeto'"+gameObject.name+"'no hay sprite render");
+        }
     }
     void OnTriggerEnter2D()
     {
@@ -27,6 +38,17 @@ public class manejadorDaño : MonoBehaviour
         if(TiempoInvuln <= 0)
         {
            gameObject.layer = correctLayer;
+            if(spriteRender != null)
+            {
+                spriteRender.enabled = true;
+            }
+        }
+        else
+        {
+            if (spriteRender != null)
+            {
+                spriteRender.enabled = !spriteRender.enabled;
+            }
         }
 
         if (salud <= 0)

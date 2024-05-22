@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Avanzar : MonoBehaviour
 {
-    float speed = 5f;
+    public float speed = 5f;
     void Update()
     {
         Vector3 pos = transform.position;

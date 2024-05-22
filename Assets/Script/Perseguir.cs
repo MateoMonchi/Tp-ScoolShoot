@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Perseguir : MonoBehaviour
 {
-    public Transform Jugador;
+    public float rotSpeed = 90;
+    Transform Jugador;
  
     void Update()
     {
         if(Jugador == null)
         {
-            GameObject go = GameObject.Find("Player");
-            if(Jugador != null)
+            GameObject go = GameObject.FindWithTag("Player");
+            if(go != null)
             {
                 Jugador = go.transform;
             }
@@ -21,6 +22,10 @@ public class Perseguir : MonoBehaviour
             return;
         }
         Vector3 dir = Jugador.position - transform.position;
-        Quaternion.LookRotation(dir);
+        dir.Normalize();
+        float anguloZ = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg - 90;
+        Quaternion desireShoot = Quaternion.Euler(0,0 ,anguloZ);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, desireShoot, rotSpeed * Time.deltaTime);
+        
     }
 }
