@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5738351102799712317}
   - component: {fileID: 4437297823711441322}
   - component: {fileID: -4860936977937369261}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: laserBlue01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,4 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841f81a0163524b488601e9f57d58259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
+  timer: 5

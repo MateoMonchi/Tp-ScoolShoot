@@ -58,6 +58,7 @@ public class manejadorDaño : MonoBehaviour
     }
     void Muerte()
     {
+        GameManager.Instancia.PerderJuego();
         Destroy(gameObject);
     }
 }
